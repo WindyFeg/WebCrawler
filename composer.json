@@ -1,6 +1,7 @@
 {
     "require": {
         "symfony/dom-crawler": "^6.4",
-        "symfony/finder": "^6.4"
+        "symfony/finder": "^6.4",
+        "guzzlehttp/guzzle": "^7.8"
     }
 }

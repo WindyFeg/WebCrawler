@@ -4,47 +4,50 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitf8aac56baf1db6b1cea41aa54eebba69
+class ComposerStaticInite1d66c4eb2d2fc8e6342a7d6448d19ad
 {
     public static $files = array (
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'S' => 
+        'P' => 
         array (
-            'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Polyfill\\Ctype\\' => 23,
-            'Symfony\\Component\\Finder\\' => 25,
-            'Symfony\\Component\\DomCrawler\\' => 29,
+            'Psr\\Http\\Message\\' => 17,
+            'Psr\\Http\\Client\\' => 16,
         ),
-        'M' => 
+        'G' => 
         array (
-            'Masterminds\\' => 12,
+            'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\' => 11,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Polyfill\\Mbstring\\' => 
+        'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
-        'Symfony\\Polyfill\\Ctype\\' => 
+        'Psr\\Http\\Client\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+            0 => __DIR__ . '/..' . '/psr/http-client/src',
         ),
-        'Symfony\\Component\\Finder\\' => 
+        'GuzzleHttp\\Psr7\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/finder',
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
-        'Symfony\\Component\\DomCrawler\\' => 
+        'GuzzleHttp\\Promise\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/dom-crawler',
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
         ),
-        'Masterminds\\' => 
+        'GuzzleHttp\\' => 
         array (
-            0 => __DIR__ . '/..' . '/masterminds/html5/src',
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
     );
 
@@ -55,9 +58,9 @@ class ComposerStaticInitf8aac56baf1db6b1cea41aa54eebba69
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitf8aac56baf1db6b1cea41aa54eebba69::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitf8aac56baf1db6b1cea41aa54eebba69::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitf8aac56baf1db6b1cea41aa54eebba69::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite1d66c4eb2d2fc8e6342a7d6448d19ad::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite1d66c4eb2d2fc8e6342a7d6448d19ad::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInite1d66c4eb2d2fc8e6342a7d6448d19ad::$classMap;
 
         }, null, ClassLoader::class);
     }
