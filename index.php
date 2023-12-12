@@ -132,9 +132,7 @@ session_start();
 
       .link-download{
     text-align: left;
-    -webkit-box-direction: normal;
     color: #1a0dab;
-    -webkit-tap-highlight-color: rgba(0,0,0,.1);
     margin: 0;
     padding: 0;
     font-family: arial,sans-serif;
@@ -143,10 +141,18 @@ session_start();
     line-height: 0.8;
     margin-bottom: 3px;
     font-size: 16px;
-    padding-top: 5px;
     margin-top: 18px;
     margin-left: 50px;
+    max-width: 650px;
+    overflow: hidden;
     cursor: pointer;
+    /* remove underline */
+    text-decoration: none;
+  }
+
+  .link-download:hover{
+    text-decoration: underline;
+    color: #1962c6;
   }
 
   .download-submit{
@@ -160,6 +166,10 @@ session_start();
       font-size: 16px;
   }
 
+  #crawl_result{
+    margin-left: 50px;
+  }
+
     /* ... Other existing CSS styles remain the same ... */
   </style>
 <script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js">
@@ -169,11 +179,11 @@ session_start();
 
   <header>
     <!-- Logo or Title -->
-    <img src="./img/WebCrawlerLogo.png" alt="Web Crawler Logo">
+    <a href="/WebCrawler/index.php"><img src="./img/WebCrawlerLogo.png" alt="Web Crawler Logo"></a>
     <form class="search-form" action="./server.php" method="GET">
       <input class="search-input" type="link" name="link" placeholder="Crawl link..." >
       <div class="dropdown">
-    <select class="dropdown-select" id="fileType">
+    <select class="dropdown-select" id="fileType" type="fileType" name="fileType">
         <option value="image">Image</option>
         <option value="pdf">PDF</option>
         <option value="txt">Text</option>

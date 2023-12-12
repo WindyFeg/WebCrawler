@@ -1,21 +1,23 @@
 <?php
 session_start();
 if (isset($_GET['link'])) {
-    $link = $_GET['link'];
-    $_SESSION['link'] = $link;
-    echo "Link: " . $link;
+    if (isset($_GET['fileType'])){
 
-    if (str_contains($link,"https://books.toscrape.com/")) {
-        header('Location: /WebCrawler/img.php');
-    }
-    else if (str_contains($link, "cuuduongthancong.com/")) {
-        header('Location: /WebCrawler/pdf.php') ;
-    } 
-    else if (str_contains($link, "https://www.pexels.com/")) {
-        header('Location: /WebCrawler/vid.php');
-    }
-    else {
-        echo "Link not found";
+        $link = $_GET['link'];
+        $filetype = $_GET['fileType'];
+        $_SESSION['link'] = $link;
+        $_SESSION['fileType'] = $filetype;
+    
+        if (str_contains($link,"https://books.toscrape.com/")) {
+            header('Location: /WebCrawler/img.php');
+        }
+        else if (str_contains($link, "cuuduongthancong.com/")) {
+            header('Location: /WebCrawler/pdf.php') ;
+        } 
+        else {
+            echo "This result is not supported, so it will crawl automatically";
+            header('Location: /WebCrawler/other.php');
+        }
     }
 }
 ?>

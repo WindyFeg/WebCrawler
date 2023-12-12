@@ -4,6 +4,8 @@ include './index.php';
 require './vendor/autoload.php';
 if (isset($_SESSION['link'])) {
     $link = $_SESSION['link'];
+    $filetype = $_SESSION['fileType'];
+
 }
 
 $httpClient = new \GuzzleHttp\Client();
@@ -18,7 +20,9 @@ $xpath = new DOMXPath($doc);
 $pdfs = $xpath->evaluate('//span[@class="col-sm-2 col-lg-1"]//a/@href');
 $extractedPdfs = [];
 
-echo "<h3>Crawl result for domain:". $link ." </h3>";
+echo "<h4 id='crawl_result'>Crawl result for domain: <span style='color: #4285f4;'>". $link ."</span></h4>";
+echo "<h4 id='crawl_result'>File type: <span style='color: #4285f4;'>". $filetype ."</span></h4>";
+
 foreach ($pdfs as $pdf) {
     $link_value = $pdf->value;
     echo "<a class='link-download' href='" ;

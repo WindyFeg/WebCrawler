@@ -6,7 +6,6 @@ require './vendor/autoload.php';
 if (isset($_SESSION['link'])) {
     $link = $_SESSION['link'];
     $filetype = $_SESSION['fileType'];
-
 }
 
 $httpClient = new \GuzzleHttp\Client();
@@ -18,22 +17,37 @@ libxml_use_internal_errors(true);
 $doc = new DOMDocument();
 $doc->loadHTML($htmlString);
 $xpath = new DOMXPath($doc);
-
-$pics = $xpath->evaluate('//ol[@class="row"]//li//article//div[@class="image_container"]/a/img');
-
+if ($filetype == "image")
+{
+    $data = $xpath->evaluate('//img');
+}
+else if ($filetype == "video")
+{
+    $data = $xpath->evaluate('//video');
+}
+else if ($filetype == "pdf")
+{
+    $data = $xpath->evaluate('//a');
+}
+else {
+    $data = $xpath->evaluate('//a');
+}
 // Save all image link in array
 echo "<h4 id='crawl_result'>Crawl result for domain: <span style='color: #4285f4;'>". $link ."</span></h4>";
 echo "<h4 id='crawl_result'>File type: <span style='color: #4285f4;'>". $filetype ."</span></h4>";
-
 $extractedImages = [];
 $LinkImages = [];
 echo "<div class='search-result'>";
-foreach($pics as $pic){
-    $extractedImages[] = $pic->textContent;
+foreach($data as $dat){
+    $extractedImages[] = $dat->textContent;
     echo "<a class='link-download' href='" ;
-    $imageLink = $link . $pic->getAttribute('src');
+    $imageLink = $dat->getAttribute('src');
     array_push($LinkImages, $imageLink);
     echo $imageLink;
+    echo "'>link". $imageLink . "</a>";
+
+    echo "<a class='link-download' href='" ;
+    echo  $link . $imageLink;
     echo "'>link". $imageLink . "</a>";
     // echo "<img src='" . $imageLink  ."'  width='500' height='600'>";
 }
