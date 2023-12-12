@@ -1,49 +1,152 @@
-<?php
-session_start();
-# scraping books to scrape: https://books.toscrape.com/
-require 'vendor/autoload.php';
-$httpClient = new \GuzzleHttp\Client();
-$MainPage = "https://books.toscrape.com/";
-$response = $httpClient->get($MainPage);
-$htmlString = (string) $response->getBody();
-//add this line to suppress any warnings
-libxml_use_internal_errors(true);
-$doc = new DOMDocument();
-$doc->loadHTML($htmlString);
-$xpath = new DOMXPath($doc);
+<!DOCTYPE html>
+<!-- saved from url=(0028)http://localhost/WebCrawler/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Web Crawler</title>
+  <style>
+    /* Basic CSS for the layout */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-$titles = $xpath->evaluate('//ol[@class="row"]//li//article//h3/a');
-$pics = $xpath->evaluate('//ol[@class="row"]//li//article//div[@class="image_container"]/a/img');
-$pic2 = $xpath->evaluate('//ol[@class="row"]//li//article//img[@class="thumbnail"]');
+    header {
+      background-color: #fff;
+      padding: 10px 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-align: center; /* Center aligning the content */
+    }
 
-$extractedTitles = [];
-foreach ($titles as $title) {
-$extractedTitles[] = $title->textContent.PHP_EOL;
-echo "<div>";
-echo "<h3>Book title:" . $title->textContent.PHP_EOL  . " </h3>";
-echo $title->getAttribute('href');
-echo "</div>";
-}
+    header img {
+      display: block;
+      margin: 0 auto; /* Centering the image */
+      max-width: 30%; /* Limiting the image size to half the original */
+      height: auto;
+    }
 
+    h1 {
+      margin-top: 10px; /* Adjusting margin for the title */
+    }
 
-// Save all image link in array
-$extractedImages = [];
-$LinkImages = [];
-foreach($pics as $pic){
-    $extractedImages[] = $pic->textContent;
-    echo "<div>";
-    $imageLink = $MainPage . $pic->getAttribute('src');
-    array_push($LinkImages, $imageLink);
-    echo "</div>";
-}
+    /* Style for search input and submit button */
+    .search-form {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-$saveDirectory = __DIR__ . '/downloads/';
+    .search-input {
+      width: 400px;
+      padding: 8px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      margin-right: 5px;
+      outline: none;
+      font-size: 16px;
+    }
 
-$serialized_array = serialize($LinkImages);
-?>
+    .search-submit {
+      background-color: #4285f4;
+      color: #fff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+    }
 
-<form method="post" action="/Webcrawler/download.php">
-<input type="hidden" name="array_data" value="<?php echo htmlspecialchars($serialized_array); ?>">
-<button type="submit" name="download">Download</button>
-</form>
-<!-- <div id='data'> </div> -->
+    .search-submit:hover {
+      background-color: #357ae8;
+    }
+
+/* Style for search results */
+.search-result {
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    .search-result h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #1a0dab; /* Google link color */
+    }
+
+    .search-result p {
+      margin: 5px 0 0;
+      color: #4d5156; /* Google description color */
+    }
+
+    .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-right: 10px;
+            margin-left: 5px;
+        }
+
+        .dropdown-select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding: 10px 36px 10px 16px;
+            border: 1px solid #ccc;
+      border-radius: 12px;
+            
+            background-color: #fff;
+            font-size: 16px;
+            color: #333;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .dropdown-select:hover {
+            border-color: #aaa;
+        }
+
+        .dropdown-select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+        }
+
+        .dropdown-icon {
+            position: absolute;
+            top: 50%;
+            right: 12px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+    /* ... Other existing CSS styles remain the same ... */
+  </style>
+<script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script></head>
+<body>
+  <header>
+    <!-- Logo or Title -->
+    <img src="./img/WebCrawlerLogo.png" alt="Web Crawler Logo">
+    <form class="search-form" action="./server.php" method="GET">
+      <input class="search-input" type="link" name="link" placeholder="Crawl link..." >
+      <div class="dropdown">
+    <select class="dropdown-select" id="fileType">
+        <option value="image">Image</option>
+        <option value="pdf">PDF</option>
+        <option value="txt">Text</option>
+        <option value="video">Video</option>
+    </select>
+    </div>
+      <input class="search-submit" type="submit" value="CRAWL">
+    </form>
+  </header>
+
+  <section>
+    <!-- Main content -->
+    <h2>Main Content Area</h2>
+    <p>Welcome to our search engine!</p>
+  </section>
+
+<footer>
+    <!-- Footer content -->
+    <p>© 2023 My Web crawler</p>
+  </footer>
+
+</body></html>
