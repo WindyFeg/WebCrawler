@@ -1,11 +1,14 @@
 <?php
+session_start();
 if (isset($_GET['link'])) {
     $link = $_GET['link'];
-    echo $link;
-    if ($link == "https://books.toscrape.com/") {
-        header('Location: /WebCrawler/linkCrawl/img.php');
-    } else if ($link == "https://cuuduongthancong.com/") {
-        header('Location: /WebCrawler/linkCrawl/pdf.php') ;
+    $_SESSION['link'] = $link;
+    echo "Link: " . $link;
+
+    if (str_contains($link,"https://books.toscrape.com/")) {
+        header('Location: /WebCrawler/img.php');
+    } else if (str_contains($link, "cuuduongthancong.com")) {
+        header('Location: /WebCrawler/pdf.php') ;
     } else {
         echo "Link not found";
     }

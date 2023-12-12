@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <!-- saved from url=(0028)http://localhost/WebCrawler/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -108,7 +112,7 @@
             border-color: #007bff;
             box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
         }
-
+      
         .dropdown-icon {
             position: absolute;
             top: 50%;
@@ -117,10 +121,52 @@
             pointer-events: none;
         }
 
+      header{
+        position: fixed;
+        width: 100%;
+      }
+      .numb{
+        height: 180px;
+
+      }
+
+      .link-download{
+    text-align: left;
+    -webkit-box-direction: normal;
+    color: #1a0dab;
+    -webkit-tap-highlight-color: rgba(0,0,0,.1);
+    margin: 0;
+    padding: 0;
+    font-family: arial,sans-serif;
+    font-weight: 400;
+    display: inline-block;
+    line-height: 0.8;
+    margin-bottom: 3px;
+    font-size: 16px;
+    padding-top: 5px;
+    margin-top: 18px;
+    margin-left: 50px;
+    cursor: pointer;
+  }
+
+  .download-submit{
+    margin: 50px;
+    background-color: #4285f4;
+      color: #fff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+  }
+
     /* ... Other existing CSS styles remain the same ... */
   </style>
-<script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script></head>
+<script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js">
+  
+</script></head>
 <body>
+
   <header>
     <!-- Logo or Title -->
     <img src="./img/WebCrawlerLogo.png" alt="Web Crawler Logo">
@@ -137,16 +183,6 @@
       <input class="search-submit" type="submit" value="CRAWL">
     </form>
   </header>
-
-  <section>
-    <!-- Main content -->
-    <h2>Main Content Area</h2>
-    <p>Welcome to our search engine!</p>
-  </section>
-
-<footer>
-    <!-- Footer content -->
-    <p>© 2023 My Web crawler</p>
-  </footer>
-
+  <div class="numb">
+    </div>
 </body></html>
