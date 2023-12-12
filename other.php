@@ -29,29 +29,48 @@ else if ($filetype == "pdf")
 {
     $data = $xpath->evaluate('//a');
 }
+else if ($filetype == "text")
+{   
+    $data = $xpath->evaluate('//div/div/div/div');
+    
+}
 else {
     $data = $xpath->evaluate('//a');
 }
 // Save all image link in array
 echo "<h4 id='crawl_result'>Crawl result for domain: <span style='color: #4285f4;'>". $link ."</span></h4>";
 echo "<h4 id='crawl_result'>File type: <span style='color: #4285f4;'>". $filetype ."</span></h4>";
+
 $extractedImages = [];
 $LinkImages = [];
 echo "<div class='search-result'>";
-foreach($data as $dat){
-    $extractedImages[] = $dat->textContent;
-    echo "<a class='link-download' href='" ;
-    $imageLink = $dat->getAttribute('src');
-    array_push($LinkImages, $imageLink);
-    echo $imageLink;
-    echo "'>link". $imageLink . "</a>";
-
-    echo "<a class='link-download' href='" ;
-    echo  $link . $imageLink;
-    echo "'>link". $imageLink . "</a>";
-    // echo "<img src='" . $imageLink  ."'  width='500' height='600'>";
+if ($filetype == "text"){
+    foreach($data as $dat){
+        echo "<div>";
+        echo $dat->textContent;
+        echo "</div>";
+    
+    }
 }
-echo "</div>";
+else{
+
+    foreach($data as $dat){
+        $extractedImages[] = $dat->textContent;
+        echo "<a class='link-download' href='" ;
+        $imageLink = $dat->getAttribute('src');
+        array_push($LinkImages, $imageLink);
+        echo $imageLink;
+        echo "'>link". $imageLink . "</a>";
+        echo "<img src='" . $imageLink  ."'  width='50' >" ;
+        
+        echo "<a class='link-download' href='" ;
+        echo  $link . $imageLink;
+        echo "'>link". $link . $imageLink . "</a>";
+        echo "<img src='" . $link . $imageLink  ."'  width='50'>";
+
+    }
+    echo "</div>";
+}
 
 $saveDirectory = __DIR__ . '/downloads/';
 

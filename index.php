@@ -186,7 +186,7 @@ session_start();
     <select class="dropdown-select" id="fileType" type="fileType" name="fileType">
         <option value="image">Image</option>
         <option value="pdf">PDF</option>
-        <option value="txt">Text</option>
+        <option value="text">Text</option>
         <option value="video">Video</option>
     </select>
     </div>
