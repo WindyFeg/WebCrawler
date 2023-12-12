@@ -30,7 +30,7 @@ echo "</div>";
 $extractedImages = [];
 $LinkImages = [];
 foreach($pics as $pic){
-$extractedImages[] = $pic->textContent.PHP_EOL;
+    $extractedImages[] = $pic->textContent;
     echo "<div>";
     $imageLink = $MainPage . $pic->getAttribute('src');
     array_push($LinkImages, $imageLink);
@@ -38,15 +38,6 @@ $extractedImages[] = $pic->textContent.PHP_EOL;
 }
 
 $saveDirectory = __DIR__ . '/downloads/';
-foreach($LinkImages as $linkImg){
-    //echo "<a >" .$linkImg . " </a>";
-    // Save Section
-
-    // $img = basename($linkImg);
-    // if (file_put_contents($img, file_get_contents($linkImg))){
-    //     echo "download successfully";
-    // }
-}
 
 $serialized_array = serialize($LinkImages);
 ?>
