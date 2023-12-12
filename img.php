@@ -17,13 +17,10 @@ $doc = new DOMDocument();
 $doc->loadHTML($htmlString);
 $xpath = new DOMXPath($doc);
 
-//$titles = $xpath->evaluate('//ol[@class="row"]//li//article//h3/a');
 $pics = $xpath->evaluate('//ol[@class="row"]//li//article//div[@class="image_container"]/a/img');
-$pic2 = $xpath->evaluate('//ol[@class="row"]//li//article//img[@class="thumbnail"]');
-
 
 // Save all image link in array
-echo "<h3>Result:</h3>";
+echo "<h3>Crawl result for domain:". $link ." </h3>";
 $extractedImages = [];
 $LinkImages = [];
 echo "<div class='search-result'>";

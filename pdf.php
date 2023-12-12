@@ -17,6 +17,8 @@ $doc->loadHTML($htmlString);
 $xpath = new DOMXPath($doc);
 $pdfs = $xpath->evaluate('//span[@class="col-sm-2 col-lg-1"]//a/@href');
 $extractedPdfs = [];
+
+echo "<h3>Crawl result for domain:". $link ." </h3>";
 foreach ($pdfs as $pdf) {
     $link_value = $pdf->value;
     echo "<a class='link-download' href='" ;

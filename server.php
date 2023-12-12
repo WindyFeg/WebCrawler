@@ -7,9 +7,14 @@ if (isset($_GET['link'])) {
 
     if (str_contains($link,"https://books.toscrape.com/")) {
         header('Location: /WebCrawler/img.php');
-    } else if (str_contains($link, "cuuduongthancong.com")) {
+    }
+    else if (str_contains($link, "cuuduongthancong.com/")) {
         header('Location: /WebCrawler/pdf.php') ;
-    } else {
+    } 
+    else if (str_contains($link, "https://www.pexels.com/")) {
+        header('Location: /WebCrawler/vid.php');
+    }
+    else {
         echo "Link not found";
     }
 }
